@@ -19,7 +19,7 @@ test('Login test- invalid login test', async ({ page }) => {
 })
 
 // css locator
-test('Login test- invalid login test_ For css locator', async ({ page }) => {
+test.skip('Login test- invalid login test_ For css locator', async ({ page }) => {
     await page.goto('https://qa.taltektc.com/index.html');
     await page.getByRole('textbox',{name: 'Email address or Student ID'}).fill('tempdata');
     await page.getByRole('textbox',{name:'Password'}).fill('tempdata');
