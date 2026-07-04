@@ -40,16 +40,16 @@ export default defineConfig({
     //   globalSetup: require.resolve('./auth_setup.js')
     // },
 
-    {
-      name: 'setup',
-      testDir: './tests/auth',
-      testMatch: /user\.setup\.js/
-    },
+    // {
+    //   name: 'setup',
+    //   testDir: './tests/auth',
+    //   testMatch: /user\.setup\.js/
+    // },
 
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup']
+      // dependencies: ['setup']
     },
 
     {
