@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:pom": "playwright test --project=chromium-pom",
+    "test:pom:headed": "playwright test --project=chromium-pom --headed",
+    "test:legacy": "playwright test --project=chromium --project=firefox --project=webkit",
+    "report": "playwright show-report"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MazidulHasan/TTKAPRIL26.git"

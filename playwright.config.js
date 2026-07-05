@@ -36,16 +36,29 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    // module.exports = {
-    //   globalSetup: require.resolve('./auth_setup.js')
-    // },
+    // --- Page Object Model suite (tests-pom/) ---------------------------
+    // 1. `setup` signs in once and saves the authenticated storage state.
+    {
+      name: 'setup',
+      testDir: './tests-pom',
+      testMatch: /auth\.setup\.js/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    // 2. `chromium-pom` runs the POM specs already signed-in by reusing the
+    //    storage state produced by `setup`. Specs that test sign-in itself
+    //    reset the state locally via `test.use({ storageState: ... })`.
+    {
+      name: 'chromium-pom',
+      testDir: './tests-pom',
+      testIgnore: /auth\.setup\.js/,
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
+    },
 
-    // {
-    //   name: 'setup',
-    //   testDir: './tests/auth',
-    //   testMatch: /user\.setup\.js/
-    // },
-
+    // --- Original suite (tests/) ---------------------------------------
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
